@@ -27,10 +27,12 @@ public class CalculaNota {
     public static String resultado (Double mediaCalculada){
         String resultado = "";
         if(mediaCalculada >= 9){
-           resultado = "Parabéns você foi Aprovado!";
+           resultado = "Aprovado! Parabéns você foi muito bem!";
 
+        }else if( mediaCalculada >= 6){
+            resultado = "Aprovado";
         }else{
-            resultado = "Reprovado. Estude mais um pouco!";
+            resultado = "Reprovado! Com essa média final não é possível liberar seu diploma, estude mais!";
         }
         return resultado;
     }

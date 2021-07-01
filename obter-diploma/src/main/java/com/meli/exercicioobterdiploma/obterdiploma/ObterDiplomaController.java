@@ -49,6 +49,6 @@ public class ObterDiplomaController {
         al.setMedia(CalculaNota.mediaCalculada(aluno));
         String mediaFinal = CalculaNota.arredondar(al.getMedia());
 
-        return "Olá " + al.getNome() + " sua nota final foi: " + mediaFinal + " " + al.getResultado();
+        return "Diploma para o aluno(a) " + al.getNome() + " sua nota final no Curso foi: " + mediaFinal + " Seu resultado foi: " + al.getResultado();
     }
 }
