@@ -13,7 +13,7 @@ public class CodigoMorse {
         }
     }
 
-    private static Letra[] letras = new Letra[] {
+    private static Letra[] letras = new Letra[]{
             new Letra('A', ".-"),
             new Letra('B', "-..."),
             new Letra('C', "-.-."),
@@ -43,7 +43,6 @@ public class CodigoMorse {
 
             new Letra(' ', "   ")
     };
-
 
 
     public static String portugues(String morse) {

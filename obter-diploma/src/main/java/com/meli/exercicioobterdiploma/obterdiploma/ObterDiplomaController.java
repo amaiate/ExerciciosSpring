@@ -37,10 +37,10 @@ public class ObterDiplomaController {
      }
 */
     @PostMapping
-    public String cadastra (@RequestBody Aluno aluno) {
+    public String cadastra(@RequestBody Aluno aluno) {
 
-        for(Disciplina d : aluno.getListaDisciplinas()){
-            if(d.getNota() > 10 || d.getNota() < 0){
+        for (Disciplina d : aluno.getListaDisciplinas()) {
+            if (d.getNota() > 10 || d.getNota() < 0) {
                 return "Valor " + d.getNota() + " nota inválida! Verifique e digite novamente!";
             }
         }

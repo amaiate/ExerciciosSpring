@@ -14,7 +14,7 @@ public class AlunoDTO {
 
     private double media;
 
-    private  int quantidesDisciplinas;
+    private int quantidesDisciplinas;
 
     public AlunoDTO(String nome, List<Disciplina> listaDisciplinas, String resultado) {
         this.nome = nome;

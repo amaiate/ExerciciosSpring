@@ -24,14 +24,14 @@ public class ConversorMorseController {
      */
 
     @RequestMapping("/tradutorMorse/{codigo}")
-    public String tradutorMorse(@PathVariable String codigo){
-       try {
-           return "Recebido: " + codigo + " Sua tradução é: " + CodigoMorse.portugues(codigo);
+    public String tradutorMorse(@PathVariable String codigo) {
+        try {
+            return "Recebido: " + codigo + " Sua tradução é: " + CodigoMorse.portugues(codigo);
 
-       }catch (Exception e){
+        } catch (Exception e) {
 
-           return e.getMessage();
+            return e.getMessage();
 
-       }
+        }
     }
 }
