@@ -37,26 +37,21 @@ public class RestauranteDTO {
         this.caixa = caixa;
     }
 
-    public Mesa pesquisar(long id) {
-        Optional<Mesa> mesaPesquisa = mesas.stream().filter(a -> a.getId() == id).findFirst();
-        if(mesaPesquisa.isPresent()) {
-            mesaPesquisa.get().setValorTotalConsumido(retornaTotalMesa(mesaPesquisa.get().getListaDePedidos()));
-            return mesaPesquisa.get();
-        }
-        return null;
-    }
 
-    public double retornaTotalMesa(List <Pedidos> pedidos){
+    public double retornaTotalMesa(List<Pedidos> pedidos) {
         double totalPrato = 0;
         double totalPedido = 0;
 
-        for(int i = 0; i <= pedidos.size(); i++) {
+        for (int i = 0; i < pedidos.size(); i++) {
 
             for (Pratos p : pedidos.get(i).getPratosSolicitados()
             ) {
+                pedidos.get(i).setValorTotal(totalPrato += p.getPreco() * p.getQuantidade());
                 totalPrato = p.getPreco() * p.getQuantidade();
                 totalPedido += totalPrato;
+
             }
+
         }
         return totalPedido;
     }
