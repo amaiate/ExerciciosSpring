@@ -1,6 +1,7 @@
 package com.meli.exerciciorestaurante.exerciciorestaurante.repository;
 
 
+import com.meli.exerciciorestaurante.exerciciorestaurante.dto.FechamentoDTO;
 import com.meli.exerciciorestaurante.exerciciorestaurante.dto.PedidoDTO;
 import com.meli.exerciciorestaurante.exerciciorestaurante.entity.Caixa;
 import com.meli.exerciciorestaurante.exerciciorestaurante.entity.Mesa;
@@ -20,9 +21,14 @@ public class PedidosRepository {
     List<Pedidos> pedidosList = new ArrayList<>();
     public List<Mesa> mesasList = new ArrayList<>();
     public List<Caixa> caixaList = new ArrayList<>();
+    FechamentoDTO fechamento = new FechamentoDTO(0);
 
     public List<Pedidos> getPedidos() {
         return pedidosList;
+    }
+
+    public FechamentoDTO getFechamento() {
+        return fechamento;
     }
 
     public List<Caixa> getCaixa() {
@@ -57,6 +63,7 @@ public class PedidosRepository {
 
         }
         return totalPedido;
+
     }
 
 
@@ -77,6 +84,7 @@ public class PedidosRepository {
             throw new PedidoInvalidoException("Id da mesa não localizado!");
         }
         retornaTotalMesa(mesaPesquisa);
+        fechamento.setValorCaixa(fechamento.getValorCaixa() + retornaTotalMesa(mesaPesquisa));
         PedidoDTO p1 = PedidoDTO.converte(idMesa, mesaPesquisa);
         caixaList.add(new Caixa(GeradorId.getProximo(), p1.getValorTotal(), p1.getValorTotal()));
         for (int i = 0; i < mesaPesquisa.size(); i++){

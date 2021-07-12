@@ -1,5 +1,6 @@
 package com.meli.exerciciorestaurante.exerciciorestaurante;
 
+import com.meli.exerciciorestaurante.exerciciorestaurante.dto.FechamentoDTO;
 import com.meli.exerciciorestaurante.exerciciorestaurante.entity.Caixa;
 import com.meli.exerciciorestaurante.exerciciorestaurante.entity.Pedidos;
 import com.meli.exerciciorestaurante.exerciciorestaurante.dto.PedidoDTO;
@@ -40,6 +41,12 @@ public class RestauranteController {
     @RequestMapping("/fechamento/{idMesa}")
     public List<Caixa> fechamentoMesa(@PathVariable long idMesa) {
         return pedidosRepository.removePedido(idMesa);
+    }
+
+    @GetMapping
+    @RequestMapping("/caixa")
+    public FechamentoDTO caixa () {
+        return pedidosRepository.getFechamento();
     }
 
 

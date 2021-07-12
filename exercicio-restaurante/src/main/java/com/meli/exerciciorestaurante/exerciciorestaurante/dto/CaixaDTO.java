@@ -9,6 +9,7 @@ public class CaixaDTO {
     public CaixaDTO(long id, double valorMesa) {
         this.id = id;
         this.valorMesa = valorMesa;
+        this.valorCaixa += valorMesa;
     }
 
     public double getValorMesa() {
