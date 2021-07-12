@@ -1,7 +1,8 @@
-package com.meli.exerciciorestaurante.exerciciorestaurante.DTO;
+package com.meli.exerciciorestaurante.exerciciorestaurante.dto;
 
-import com.meli.exerciciorestaurante.exerciciorestaurante.Classes.Pedidos;
-import com.meli.exerciciorestaurante.exerciciorestaurante.Classes.Pratos;
+import com.meli.exerciciorestaurante.exerciciorestaurante.entity.Pedidos;
+import com.meli.exerciciorestaurante.exerciciorestaurante.entity.Pratos;
+import com.meli.exerciciorestaurante.exerciciorestaurante.exception.PedidoInvalidoException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,6 +47,7 @@ public class PedidoDTO {
 
     public static PedidoDTO converte(long id, List<Pedidos> pedidos) {
 
+        try{
         List<Pedidos> pedidosList = pedidos.stream().filter(a -> a.getMesaId() == id).collect(Collectors.toList());
         List<Pratos> pratosList = new ArrayList<>();
 
@@ -58,7 +60,10 @@ public class PedidoDTO {
         }
 
 
-        return new PedidoDTO(id, pratosList,RestauranteDTO.retornaTotalMesa(pedidos) );
+        return new PedidoDTO(id, pratosList,RestauranteDTO.retornaTotalMesa(pedidos) );}
+        catch (PedidoInvalidoException e){
+            throw new PedidoInvalidoException("Id não localizado!");
+        }
 
     }
 

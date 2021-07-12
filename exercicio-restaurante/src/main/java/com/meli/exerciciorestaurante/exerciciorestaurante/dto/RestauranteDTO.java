@@ -1,13 +1,12 @@
-package com.meli.exerciciorestaurante.exerciciorestaurante.DTO;
+package com.meli.exerciciorestaurante.exerciciorestaurante.dto;
 
-import com.meli.exerciciorestaurante.exerciciorestaurante.Classes.Mesa;
-import com.meli.exerciciorestaurante.exerciciorestaurante.Classes.Pedidos;
-import com.meli.exerciciorestaurante.exerciciorestaurante.Classes.Pratos;
+import com.meli.exerciciorestaurante.exerciciorestaurante.entity.Mesa;
+import com.meli.exerciciorestaurante.exerciciorestaurante.entity.Pedidos;
+import com.meli.exerciciorestaurante.exerciciorestaurante.entity.Pratos;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 
 public class RestauranteDTO {
 

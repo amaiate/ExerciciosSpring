@@ -1,23 +1,14 @@
-package com.meli.exerciciorestaurante.exerciciorestaurante.entity;
+package com.meli.exerciciorestaurante.exerciciorestaurante.dto;
 
-public class Caixa {
+public class CaixaDTO {
 
     private long id;
     private double valorMesa;
     private double valorCaixa;
 
-    public Caixa(long id, double valorMesa, double valorCaixa) {
+    public CaixaDTO(long id, double valorMesa) {
         this.id = id;
         this.valorMesa = valorMesa;
-        this.valorCaixa = valorCaixa;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public double getValorMesa() {
@@ -26,6 +17,14 @@ public class Caixa {
 
     public void setValorMesa(double valorMesa) {
         this.valorMesa = valorMesa;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public double getValorCaixa() {

@@ -1,32 +1,25 @@
 package com.meli.exerciciorestaurante.exerciciorestaurante;
 
-
-import com.meli.exerciciorestaurante.exerciciorestaurante.Classes.Mesa;
-import com.meli.exerciciorestaurante.exerciciorestaurante.Classes.Pedidos;
-import com.meli.exerciciorestaurante.exerciciorestaurante.DTO.PedidoDTO;
-import com.meli.exerciciorestaurante.exerciciorestaurante.DTO.RestauranteDTO;
-import com.meli.exerciciorestaurante.exerciciorestaurante.Repository.PedidosRepository;
-import com.meli.exerciciorestaurante.exerciciorestaurante.utils.GeradorId;
+import com.meli.exerciciorestaurante.exerciciorestaurante.entity.Caixa;
+import com.meli.exerciciorestaurante.exerciciorestaurante.entity.Pedidos;
+import com.meli.exerciciorestaurante.exerciciorestaurante.dto.PedidoDTO;
+import com.meli.exerciciorestaurante.exerciciorestaurante.repository.PedidosRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
 @RequestMapping("/api")
 public class RestauranteController {
 
-    RestauranteDTO r1 = new RestauranteDTO();
     PedidosRepository pedidosRepository = new PedidosRepository();
 
     @PostMapping("/pedidos")
     @ResponseBody
-    public ResponseEntity<Pedidos> pedidosMesa(@RequestBody Pedidos pedidos) {
-        Pedidos pedido = new Pedidos(GeradorId.getProximo(), pedidos.getMesaId(), pedidos.getPratosSolicitados());
-       pedidosRepository.addPedido(pedido);
-
-        return ResponseEntity.accepted().body(pedido);
+    public ResponseEntity<?> pedidosMesa(@RequestBody Pedidos pedidos) {
+       pedidosRepository.addPedido(pedidos);
+       return ResponseEntity.ok(pedidos.getPratosSolicitados());
     }
 
     @GetMapping
@@ -41,6 +34,12 @@ public class RestauranteController {
     public List<Pedidos> listaMesa() {
 
         return pedidosRepository.getPedidos();
+    }
+
+    @GetMapping
+    @RequestMapping("/fechamento/{idMesa}")
+    public List<Caixa> fechamentoMesa(@PathVariable long idMesa) {
+        return pedidosRepository.removePedido(idMesa);
     }
 
 

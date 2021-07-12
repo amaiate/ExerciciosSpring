@@ -1,4 +1,4 @@
-package com.meli.exerciciorestaurante.exerciciorestaurante.Classes;
+package com.meli.exerciciorestaurante.exerciciorestaurante.entity;
 
 public class Pratos {
 

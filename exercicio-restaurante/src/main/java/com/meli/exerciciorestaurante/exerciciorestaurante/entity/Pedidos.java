@@ -1,7 +1,4 @@
-package com.meli.exerciciorestaurante.exerciciorestaurante.Classes;
-
-import com.meli.exerciciorestaurante.exerciciorestaurante.Repository.PedidosRepository;
-import com.meli.exerciciorestaurante.exerciciorestaurante.utils.GeradorId;
+package com.meli.exerciciorestaurante.exerciciorestaurante.entity;
 
 import java.util.List;
 
