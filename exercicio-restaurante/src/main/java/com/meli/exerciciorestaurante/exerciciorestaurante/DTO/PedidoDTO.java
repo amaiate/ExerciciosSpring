@@ -1,12 +1,11 @@
 package com.meli.exerciciorestaurante.exerciciorestaurante.DTO;
 
-import com.meli.exerciciorestaurante.exerciciorestaurante.Classes.Mesa;
 import com.meli.exerciciorestaurante.exerciciorestaurante.Classes.Pedidos;
 import com.meli.exerciciorestaurante.exerciciorestaurante.Classes.Pratos;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class PedidoDTO {
 
@@ -14,10 +13,11 @@ public class PedidoDTO {
     private List<Pratos> pratosSolicitados;
     private double valorTotal;
 
-    public PedidoDTO(List<Pratos> pratosSolicitados) {
 
+    public PedidoDTO(long mesaId, List<Pratos> pratosSolicitados, double valorTotal) {
+        this.mesaId = mesaId;
         this.pratosSolicitados = pratosSolicitados;
-
+        this.valorTotal = valorTotal;
     }
 
     public long getMesaId() {
@@ -44,20 +44,30 @@ public class PedidoDTO {
         this.valorTotal = valorTotal;
     }
 
-    public static List<PedidoDTO> converte(List<Pedidos> pedidos) {
-        List<PedidoDTO> p1 = new ArrayList<PedidoDTO>();
+    public static PedidoDTO converte(long id, List<Pedidos> pedidos) {
 
-        for (int i = 0; i < pedidos.size(); i++) {
-            Optional<Pedidos> mesaPesquisa = pedidos.stream().filter(a -> a.getId() == i).findAny();
-            if (mesaPesquisa.isPresent()) {
-                p1.add(pedidos.get(i).getPratosSolicitados());
-                return mesaPesquisa.get();
+        List<Pedidos> pedidosList = pedidos.stream().filter(a -> a.getMesaId() == id).collect(Collectors.toList());
+        List<Pratos> pratosList = new ArrayList<>();
+
+        RestauranteDTO.retornaTotalMesa(pedidos);
+
+        for (int i = 0; i < pedidosList.size(); i++ ) {
+            for (int x = 0; x < pedidosList.get(i).getPratosSolicitados().size(); x++) {
+                pratosList.add(pedidosList.get(i).getPratosSolicitados().get(x));
             }
-            return null;
         }
 
 
-        return new PedidoDTO(pedidos.getPratosSolicitados());
+        return new PedidoDTO(id, pratosList,RestauranteDTO.retornaTotalMesa(pedidos) );
 
+    }
+
+    @Override
+    public String toString() {
+        return "PedidoDTO{" +
+                "mesaId=" + mesaId +
+                ", pratosSolicitados=" + pratosSolicitados +
+                ", valorTotal=" + valorTotal +
+                '}';
     }
 }

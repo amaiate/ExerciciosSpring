@@ -1,5 +1,8 @@
 package com.meli.exerciciorestaurante.exerciciorestaurante.Classes;
 
+import com.meli.exerciciorestaurante.exerciciorestaurante.Repository.PedidosRepository;
+import com.meli.exerciciorestaurante.exerciciorestaurante.utils.GeradorId;
+
 import java.util.List;
 
 public class Pedidos {
@@ -41,11 +44,11 @@ public class Pedidos {
         this.valorTotal = valorTotal;
     }
 
-    public Pedidos(long id, long mesaId, List<Pratos> pratosSolicitados, double valorTotal) {
+    public Pedidos(long id, long mesaId, List<Pratos> pratosSolicitados) {
         this.id = id;
         this.mesaId = mesaId;
         this.pratosSolicitados = pratosSolicitados;
-        this.valorTotal = valorTotal;
+
     }
 
     @Override

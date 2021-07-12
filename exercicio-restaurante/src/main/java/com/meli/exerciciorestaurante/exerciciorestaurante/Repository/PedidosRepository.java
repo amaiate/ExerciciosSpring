@@ -1,42 +1,31 @@
-package com.meli.exerciciorestaurante.exerciciorestaurante.DTO;
+package com.meli.exerciciorestaurante.exerciciorestaurante.Repository;
+
 
 import com.meli.exerciciorestaurante.exerciciorestaurante.Classes.Mesa;
 import com.meli.exerciciorestaurante.exerciciorestaurante.Classes.Pedidos;
 import com.meli.exerciciorestaurante.exerciciorestaurante.Classes.Pratos;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
-public class RestauranteDTO {
+@Repository
+public class PedidosRepository {
 
+    List<Pedidos> pedidosList = new ArrayList<>();
+    public List<Mesa> mesasList = new ArrayList<>();
 
-    private List<Mesa> mesas = new ArrayList<Mesa>(
-            Arrays.asList(
-
-            )
-
-    );
-
-    private double caixa;
-
-    public List<Mesa> getMesas() {
-        return mesas;
+    public List<Pedidos> getPedidos() {
+        return pedidosList;
     }
 
-    public void setMesas(List<Mesa> mesas) {
-        this.mesas = mesas;
+    public Pedidos addPedido(Pedidos pedido) {
+        pedidosList.add(pedido);
+        return pedido;
     }
-
-    public double getCaixa() {
-        return caixa;
-    }
-
-    public void setCaixa(double caixa) {
-        this.caixa = caixa;
-    }
-
 
     public static double retornaTotalMesa(List<Pedidos> pedidos) {
         double totalPrato = 0;
@@ -54,5 +43,15 @@ public class RestauranteDTO {
 
         }
         return totalPedido;
+    }
+
+
+    public List<Pedidos> pesquisar(long id) {
+        List<Pedidos> mesaPesquisa = pedidosList.stream().filter(a -> a.getMesaId() == id).collect(Collectors.toList());
+        if (!mesaPesquisa.isEmpty()) {
+            retornaTotalMesa(mesaPesquisa);
+            return mesaPesquisa;
+        }
+        return null;
     }
 }
